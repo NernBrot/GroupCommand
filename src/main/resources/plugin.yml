@@ -1,0 +1,14 @@
+name: GroupCommand
+version: '${project.version}'
+main: me.nernbrot.groupcommand.GroupCommand
+description: 一条命令触发多条自定义命令组
+commands:
+  GroupCommand:
+    aliases:
+      - Gc
+      - gc
+      - groupcommand
+    description: 主命令
+    permission: groupcommand.admin
+    permission-message: 你没有使用这个命令的权限
+

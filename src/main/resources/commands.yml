@@ -1,0 +1,9 @@
+Group:
+  A:
+    Console:
+      - me 1
+      - me 2
+      - me 3
+  B:
+    Console:
+      - tps
