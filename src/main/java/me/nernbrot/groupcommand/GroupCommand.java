@@ -122,7 +122,7 @@ public final class GroupCommand extends JavaPlugin {
                                                 String consolekey = key + ".Console";
                                                 List<String> consolelist = commandconfig.getStringList(consolekey);
                                                 for (String list_to_string : consolelist){
-                                                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), list_to_string);
+                                                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),list_to_string);
                                                 }
                                                 Player player = ((Player) sender).getPlayer();
                                                 player.sendMessage("[Gc]成功执行" + args[1] + "命令组");
@@ -200,12 +200,37 @@ public final class GroupCommand extends JavaPlugin {
                                     }
                                 }
                             } else {
-                                if (sender instanceof ConsoleCommandSender){
-                                    System.out.println("[Gc]错误参数,查看帮助请输入gc help");
-                                }
-                                if (sender instanceof Player){
-                                    Player player = ((Player) sender).getPlayer();
-                                    player.sendMessage("[Gc]错误参数,查看帮助请输入gc help");
+                                if (args[0].equalsIgnoreCase("wait")){
+                                    if (args.length<3){
+                                        if (sender instanceof ConsoleCommandSender){
+                                            if (args.length == 1){
+                                                System.out.println("[Gc]延迟命令");
+                                            }else {
+                                                if (args.length == 2){
+                                                    String wait = args[1];
+                                                    try {
+                                                        Thread.sleep(Long.parseLong(wait));
+                                                    } catch (InterruptedException ex){
+                                                        Thread.currentThread().interrupt();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (sender instanceof Player){
+                                            Player player = ((Player) sender).getPlayer();
+                                            player.sendMessage("[Gc]该命令只允许控制台输入");
+                                        }
+                                    } else {
+                                        System.out.println("[Gc]错误参数正确用法gc wait <时间>");
+                                    }
+                                }else {
+                                        if (sender instanceof ConsoleCommandSender){
+                                            System.out.println("[Gc]错误参数,查看帮助请输入gc help");
+                                        }
+                                        if (sender instanceof Player){
+                                            Player player = ((Player) sender).getPlayer();
+                                            player.sendMessage("[Gc]错误参数,查看帮助请输入gc help");
+                                        }
                                 }
                             }
                         }
